@@ -1,0 +1,591 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>图灵寒假计划</title>
+    <script src="vue.js"></script>
+    <link rel="stylesheet" href="index.css">
+    <script src="index.js"></script>
+    <link rel="icon" href="logo.ico">
+    <style>
+        body,
+        .c {
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: #f7f7f7;
+            flex-direction: column;
+        }
+
+        .block {
+            margin-top: 20px;
+            min-width: 50vw;
+            max-width: 300px;
+        }
+
+        .el-timeline {
+            padding-left: 0;
+        }
+
+
+        .red {
+            color: red;
+        }
+    </style>
+</head>
+<a href="http://" target="_blank"></a>
+
+<body>
+    <div id="app">
+        <div class="c">
+            <h1 style="text-align: center;">
+                {{needConnectInternet}}
+                <div style="color: red;" v-show="isNewYear">
+                    {{tips1}}</div>
+            </h1>
+            <el-radio-group v-model="key" @change="ch">
+                <el-radio-button label="团队"></el-radio-button>
+                <el-radio-button label="CV"></el-radio-button>
+                <el-radio-button label="NLP"></el-radio-button>
+                <el-radio-button label="智家"></el-radio-button>
+            </el-radio-group>
+            <el-radio-group v-model="key" @change="ch">
+                <el-radio-button label="前端"></el-radio-button>
+                <el-radio-button label="后台"></el-radio-button>
+                <el-radio-button label="UI"></el-radio-button>
+            </el-radio-group>
+        </div>
+
+        <div class="block">
+            <el-timeline>
+                <el-timeline-item v-for="(item,i) in Plan" :timestamp="item.Time" :type="item.State" placement="top">
+                    <el-card :shadow="item.shadow">
+                        <span style="font-size: 25px;">{{item.Title}}</span>
+                        <el-tag size="mini" :type="item.State=='success'?'danger':'info'">{{item.Title2}}</el-tag>
+                        <span style="font-size: 10px;">
+                            <span style="color: red;" v-show="isNewYear">
+                                {{tips2}}
+                            </span>
+                        </span>
+                        <div v-html="item.Detail"></div>
+                        <div style="color: #ccc;">{{item.More}}</div>
+                    </el-card>
+                </el-timeline-item>
+            </el-timeline>
+        </div>
+    </div>
+    <script>
+        new Vue({
+            el: '#app',
+            data: {
+                needConnectInternet: '图灵各方向寒假计划',
+                Plan: [{
+                    Time: "2021/1/16",
+                    Title: "寒假",
+                    Title2: "47天",
+                    Detail: `每天晚上在大群里发三句话，多长都行，忙里摸闲的事也行。重点是让我们知道你没失联<br>
+                    <ul>
+                        <li>今日计划</li>
+                        <li>今日总结</li>
+                        <li>明日计划</li>
+                    </ul>
+                    `,
+                    More: "学技术就是要坐冷板凳",
+                    State: "",
+                    shadow: "hover"
+                }, {
+                    Time: "2021/1/24",
+                    Title: "第一次例会",
+                    Title2: "当天",
+                    Detail: "",
+                    More: "",
+                    State: "",
+                    shadow: "hover"
+                }, {
+                    Time: "2021/1/31",
+                    Title: "第二次例会",
+                    Title2: "当天",
+                    Detail: ``,
+                    More: "",
+                    State: "",
+                    shadow: "hover"
+                }, {
+                    Time: "2021/2/7",
+                    Title: "第三次例会",
+                    Title2: "当天",
+                    Detail: ``,
+                    More: "",
+                    State: "",
+                    shadow: "hover"
+                }, {
+                    Time: "2021/2/8",
+                    Title: "玩",
+                    Title2: "14天",
+                    Detail: `好好过年，22号恢复学习`,
+                    More: "",
+                    State: "",
+                    shadow: "hover"
+                }, {
+                    Time: "2021/2/28",
+                    Title: "第四次例会",
+                    Title2: "当天",
+                    Detail: ``,
+                    More: "",
+                    State: "",
+                    shadow: "hover"
+                }, {
+                    Time: "2021/3/5",
+                    Title: "开学",
+                    Title2: "当天",
+                    Detail: "",
+                    More: "",
+                    State: "",
+                    shadow: "hover"
+                }],
+                Plan0: [{
+                    Time: "2021/1/16",
+                    Title: "寒假",
+                    Title2: "47天",
+                    Detail: `每天晚上在大群里发三句话，多长都行，忙里摸闲的事也行。重点是让我们知道你没失联<br>
+                    <ul>
+                        <li>今日计划</li>
+                        <li>今日总结</li>
+                        <li>明日计划</li>
+                    </ul>
+                    `,
+                    More: "学技术就是要坐冷板凳",
+                    State: "",
+                    shadow: "hover"
+                }, {
+                    Time: "2021/1/24",
+                    Title: "第一次例会",
+                    Title2: "当天",
+                    Detail: "",
+                    More: "",
+                    State: "",
+                    shadow: "hover"
+                }, {
+                    Time: "2021/1/31",
+                    Title: "第二次例会",
+                    Title2: "当天",
+                    Detail: ``,
+                    More: "",
+                    State: "",
+                    shadow: "hover"
+                }, {
+                    Time: "2021/2/7",
+                    Title: "第三次例会",
+                    Title2: "当天",
+                    Detail: ``,
+                    More: "",
+                    State: "",
+                    shadow: "hover"
+                }, {
+                    Time: "2021/2/8",
+                    Title: "玩",
+                    Title2: "14天",
+                    Detail: `好好过年，22号恢复学习`,
+                    More: "",
+                    State: "",
+                    shadow: "hover"
+                }, {
+                    Time: "2021/2/28",
+                    Title: "第四次例会",
+                    Title2: "当天",
+                    Detail: ``,
+                    More: "",
+                    State: "",
+                    shadow: "hover"
+                }, {
+                    Time: "2021/3/5",
+                    Title: "开学",
+                    Title2: "当天",
+                    Detail: "",
+                    More: "",
+                    State: "",
+                    shadow: "hover"
+                }],
+                Plan1: [{
+                    Time: "2021/1/16",
+                    Title: "学完深度学习基础",
+                    Title2: "8天",
+                    Detail: `看完cs231n或吴恩达的视频<br>
+    要求至少学到卷积的过程,能够手动计算图像经过卷积之后尺寸变化`,
+                    More: "",
+                    State: "",
+                    shadow: "hover"
+                }, {
+                    Time: "2021/1/24",
+                    Title: "学习opencv",
+                    Title2: "15天",
+                    Detail: `要多敲代码,不要求一定要全部学完,基础的图像操作要熟练,其他如直方图,分水岭算法等可以学快点`,
+                    More: "",
+                    State: "",
+                    shadow: "hover"
+                }, {
+                    Time: "2021/2/8",
+                    Title: "玩",
+                    Title2: "14天",
+                    Detail: "放下键盘，好好过年！",
+                    More: "",
+                    State: "",
+                    shadow: "hover"
+                }, {
+                    Time: "2021/2/22",
+                    Title: "学习pytorch或tensorflow框架",
+                    Title2: "11天",
+                    Detail: `<ul><li>建议学习pytorch安装方便,对新手友好,tensorflow1.x到tensorflow2.x版本相差较大</li><li>学习资料:莫烦python的pytorch等教程(其中部分教程较老),pytorch官网,tensorflow官网,建议学会看官网的教程和api文档</li><li> 要求能够完成一些小项目,能够自己按照网络结构图搭建神经网络,并完成训练和预测过程<br></li><li>一定要勤敲代码</li></ul>`,
+                    More: "",
+                    State: "",
+                    shadow: "hover"
+                }, {
+                    Time: "2021/3/5",
+                    Title: "开学",
+                    Title2: "当天",
+                    Detail: "<div class='red'>每次例会会布置小作业作为考核的一部分,在返校后会布置一个大的项目作为最终的二轮考核题目,学的快的可以继续深入学习机器学习和深度学习或者将pytorch,tensorflow两个框架都学完.</div>",
+                    More: "",
+                    State: "",
+                    shadow: "hover"
+                }],
+                Plan2: [{
+                    Time: "2021/1/16",
+                    Title: "机器学习基础",
+                    Title2: "7天",
+                    Detail: `要求对几个主要的算法有了解，会使用<br>
+    参考视频：https://www.bilibili.com/video/av39137333?p=1<br>
+    <div class='red'>记得1.25号前完成之前布置的任务</div>`,
+                    More: "",
+                    State: "",
+                    shadow: "hover"
+                }, {
+                    Time: "2021/1/23",
+                    Title: "深度学习基础",
+                    Title2: "16天",
+                    Detail: `CS224n或者吴恩达的深度学习视频<br>
+    CS224n:https://www.bilibili.com/video/av41393758<br>吴恩达:https://space.bilibili.com/246622355<br>吴恩达的重点看第五章，第四章可以不看，要学会rnn,lstm,gru这几个网络，知道原理和如何实现<br>另:实现网络可能要用到keras，<del>当然你也可以用numpy实现</del>keras官网:https://keras-cn.readthedocs.io/en/latest/layers/core_layer/#lambda<br>keras例子:https://github.com/gaussic/keras-examples`,
+                    More: "",
+                    State: "",
+                    shadow: "hover"
+                }, {
+                    Time: "2021/2/8",
+                    Title: "玩",
+                    Title2: "14天",
+                    Detail: "放下键盘，好好过年！",
+                    More: "",
+                    State: "",
+                    shadow: "hover"
+                }, {
+                    Time: "2021/2/22",
+                    Title: "深度学习框架的使用",
+                    Title2: "11天",
+                    Detail: `可以用之前学习的keras，但是建议另学tensorflow和pytorch，因为大部分论文的开源代码都是用它们实现的,起码要学会看开源的代码。<br>
+    <div class='red'>强烈不建议使用tensorflow框架，但是要学会看tensorflow框架实现的代码</div>
+    (1.x谷歌已经停止支持了，2.x和pytorch越来越像，<del>并且api太多，太臃肿，官方文档又贼烂，官方在github上的例子还出现从原理到实现全错的代码，使用tensorflow去做项目可能会出现非常多奇奇怪怪的错误</del>)<br>
+    学习建议看官网和例子:<br>
+    <ul><li>pytorch官网：https://pytorch.org/
+    </li><li>pytorch例子：https://github.com/pytorch/examples/</li><li>tensorflow官网：https://tensorflow.google.cn/</li></ul>
+    <br>选学:cnn在nlp中的运用<ul><li>​了解：http://www.wildml.com/2015/11/understanding-convolutional-neural-networks-for-nlp/<br>想深入研究的话网址下面有参考资料</li><li>或者：https://spaces.ac.cn/archives/5409（这里介绍了一种cnn和比较简单的attention结合的一种网络——DGCNN用于阅读理解）</li></ul>
+    `,
+                    More: "",
+                    State: "",
+                    shadow: "hover"
+                }, {
+                    Time: "2021/3/5",
+                    Title: "开学",
+                    Title2: "当天",
+                    Detail: "",
+                    More: "",
+                    State: "",
+                    shadow: "hover"
+                }],
+                Plan3: [{
+                    Time: "2021/1/16",
+                    Title: "巩固",
+                    Title2: "5天",
+                    Detail: `这段时间要学完js相关内容，简单过一遍ES6文档。<br>
+                        如果在学校学习的进度落后，这段时间要抓紧了。学完的也要巩固好，有余力的可以提前准备考核。有些知识点可能用不上，知道有这个概念就行，要多上手敲代码。<br>
+                        以下所有资源链接只是推荐，可以网上找适合自己的同类资源`,
+                    More: "学技术就是要坐冷板凳",
+                    State: "",
+                    shadow: "hover"
+                }, {
+                    Time: "2021/1/21",
+                    Title: "入门jQuery",
+                    Title2: "6天",
+                    Detail: `重点：用jQuery操作BOM元素、jQuery的遍历、AJAX<br>
+                    菜鸟教程：https://www.runoob.com/jquery`,
+                    More: "",
+                    State: "",
+                    shadow: "hover"
+                }, {
+                    Time: "2021/1/27",
+                    Title: "入门Bootstrap",
+                    Title2: "4天",
+                    Detail: `目标：与jQuery结合，能快速构建简单的网站<br>
+                    菜鸟教程：https://www.runoob.com/bootstrap`,
+                    More: "",
+                    State: "",
+                    shadow: "hover"
+                }, {
+                    Time: "2021/1/31",
+                    Title: "做考核任务",
+                    Title2: "6天",
+                    Detail: `<p><ul><span>我的日记</span><li>主要功能：可对每篇日记进行增、删、改</li><li>查找功能：关键词检索日记的标题（tips：使用正则表达式）</li><li>皮肤功能：深色模式、浅色模式（tips：对元素的类进行替换）</li><li>记录时间：每篇日记需要显示记录的时间</li><li>保留数据：包括所有日记数据、皮肤设置（tips：将<code>JSON对象</code>转化为<code>JSON字符</code>，存到<code>localstorage</code>，每次打开页面再从<code>localstorage</code>加载数据）</li><li>获取并展示当天农历时间：可用<code>jQueryAJAX</code>的<code>get()</code>方法从<code>https://api.xlongwei.com/service/datetime/convert.json</code>获取数据</li></ul></p>
+            你需要jQuery和Bootstrap构建这个项目。
+            `,
+                    More: "",
+                    State: "",
+                    shadow: "hover"
+                }, {
+                    Time: "2021/2/8",
+                    Title: "玩",
+                    Title2: "14天",
+                    Detail: "放下键盘，好好过年！",
+                    More: "",
+                    State: "",
+                    shadow: "hover"
+                }, {
+                    Time: "2021/2/22",
+                    Title: "收收心，继续做考核任务",
+                    Title2: "6天",
+                    Detail: "",
+                    More: "",
+                    State: "",
+                    shadow: "hover"
+                }, {
+                    Time: "2021/2/28",
+                    Title: "考核验收",
+                    Title2: "当天",
+                    Detail: "",
+                    More: "Talk is cheap. Show me the code.",
+                    State: "",
+                    shadow: "hover"
+                }, {
+                    Time: "2021/2/29",
+                    Title: "入门Vue",
+                    Title2: "下次任务布置",
+                    Detail: "深入前端，学更高级的js框架",
+                    More: "Stay hungry Stay foolish.",
+                    State: "",
+                    shadow: "hover"
+                }, {
+                    Time: "2021/3/5",
+                    Title: "开学",
+                    Title2: "当天",
+                    Detail: "",
+                    More: "",
+                    State: "",
+                    shadow: "hover"
+                }],
+                Plan4: [{
+                    Time: "2021/1/16",
+                    Title: "入门数据库",
+                    Title2: "7天",
+                    Detail: `需要掌握基础的增删改查以及用数据库连接idea工具<br>
+    https://www.bilibili.com/video/BV1NJ411J79W?from=search&seid=6895859057173165462<br>
+    所有的资源链接只是推荐，可以选择自己喜欢的风格的视频来看，无影响`,
+                    More: "",
+                    State: "",
+                    shadow: "hover"
+                }, {
+                    Time: "2021/1/23",
+                    Title: "简单入门前端",
+                    Title2: "7天",
+                    Detail: `要求会做一些简单的按钮 跳转功能（可能会有点不习惯 坚持住）<br>
+    html/css：https://pan.baidu.com/s/18PM4CNM8oWXMgSMJyzlbhA <br>
+    提取码：tail <br>
+    Javascript/jquery：https://pan.baidu.com/s/1njsyypwerDDe0uOgoJobdQ <br>
+    提取码：tail `,
+                    More: "",
+                    State: "",
+                    shadow: "hover"
+                }, {
+                    Time: "2021/1/30",
+                    Title: "入门javaweb（重要）",
+                    Title2: "9天",
+                    Detail: `学完javaweb后要会做一个小网站 要求能连接到数据库 从前端页面输入的东西要传输到后台进行处理<br>https://www.bilibili.com/video/BV12J411M7Sj`,
+                    More: "",
+                    State: "",
+                    shadow: "hover"
+                }, {
+                    Time: "2021/2/8",
+                    Title: "玩",
+                    Title2: "14天",
+                    Detail: "放下键盘，好好过年！",
+                    More: "",
+                    State: "",
+                    shadow: "hover"
+                }, {
+                    Time: "2021/2/22",
+                    Title: "收收心，继续学javaweb",
+                    Title2: "5天",
+                    Detail: "",
+                    More: "",
+                    State: "",
+                    shadow: "hover"
+                }, {
+                    Time: "2021/2/27",
+                    Title: "发布考核任务",
+                    Title2: "当天",
+                    Detail: "注意群聊",
+                    More: "Talk is cheap. Show me the code.",
+                    State: "",
+                    shadow: "hover"
+                }, {
+                    Time: "2021/3/5",
+                    Title: "开学",
+                    Title2: "当天",
+                    Detail: "",
+                    More: "",
+                    State: "",
+                    shadow: "hover"
+                }],
+                Plan5: [{
+                    Time: "2021/1/16",
+                    Title: "练习钢笔工具",
+                    Title2: "3天",
+                    Detail: `了解色彩的色相、饱和度、明度、简单了解每种色彩对应的情绪<ul><li>https://www.bilibili.com/video/BV1k441167a1</li><li>bezier.method.ac</li></ul>`,
+                    More: "",
+                    State: "",
+                    shadow: "hover"
+                }, {
+                    Time: "2021/1/19",
+                    Title: "跟着大鹏课程学习",
+                    Title2: "14天",
+                    Detail: `<ul>
+    <li>每天学习大鹏的一节课，并且提交作业到M站上去，边看边动手学习，并且思考:<br>
+    1.每一步骤的作用是什么，2.每个工具怎么操作，具有什么属性，可以达到怎样的效果 。 做好笔记。在这14天中，学习完ps案例提升课程。
+    </li>
+    <li>建立属于自己图库:每天去网站收集5张自己认为好看的图片，可以涉及UI设计（APP和网页）、平面设计、人像或者风景摄影作品、电商设计、包装设计等。（坚持整个寒假都收集）</li>
+    <li>临摹微信标签栏的图标及其每个一级页面出现的icon，即包括微信下的，“文件传输助手”，“微信支付”。通讯录下的，“新的朋友”，“仅聊天的朋友”，“群聊”，“标签”，“公众号”,”企业微信联系人”，依次类推发现，以及我的页面出现的icon。</li>
+    </ul>`,
+                    More: "",
+                    State: "",
+                    shadow: "hover"
+                }, {
+                    Time: "2021/2/1",
+                    Title: "简单入门操作Ai软件",
+                    Title2: "7天",
+                    Detail: "",
+                    More: "",
+                    State: "",
+                    shadow: "hover"
+                }, {
+                    Time: "2021/2/8",
+                    Title: "玩",
+                    Title2: "14天",
+                    Detail: "放下键盘，好好过年！",
+                    More: "",
+                    State: "",
+                    shadow: "hover"
+                }, {
+                    Time: "2021/2/22",
+                    Title: "做一个小任务",
+                    Title2: "6天",
+                    Detail: `临摹3个图标（ps、ai不限定，如果觉得ps难临摹，可以尝试用Ai；网上有临摹的教程）<br>
+    chrome浏览器的图标、朋友圈的图标以及网易云的图标
+    `,
+                    More: "",
+                    State: "",
+                    shadow: "hover"
+                }, {
+                    Time: "2021/2/28",
+                    Title: "发布考核任务",
+                    Title2: "当天",
+                    Detail: "发布考核任务，并且在开学一个月内验收",
+                    More: "",
+                    State: "",
+                    shadow: "hover"
+                }, {
+                    Time: "2021/3/5",
+                    Title: "开学",
+                    Title2: "当天",
+                    Detail: "",
+                    More: "",
+                    State: "",
+                    shadow: "hover"
+                }],
+                Plan6: [{
+                    Time: "2021/1/16",
+                    Title: "计划中",
+                    Title2: "计划中",
+                    Detail: "",
+                    More: "",
+                    State: "",
+                    shadow: "hover"
+                }],
+                tips1: "别看了，好好玩！",
+                tips2: "逃离电脑，老实过年！",
+                timer: "",
+                isNewYear: false,
+                key: "团队"
+            },
+            mounted() {
+                this.getState()
+            },
+            methods: {
+                ch: function (e) {
+                    console.log(e);
+                    if (e == "CV") {
+                        this.Plan = this.Plan1
+                    } else if (e == "NLP") {
+                        this.Plan = this.Plan2
+                    } else if (e == "前端") {
+                        this.Plan = this.Plan3
+                    } else if (e == "后台") {
+                        this.Plan = this.Plan4
+                    } else if (e == "团队") {
+                        this.Plan = this.Plan0
+                    } else if (e == "UI") {
+                        this.Plan = this.Plan5
+                    } else if (e == "智家") {
+                        this.Plan = this.Plan6
+                    }
+                    clearInterval(this.timer)
+                    this.getState()
+                },
+                frush: function (n) {
+                    const Plan = this.Plan
+                    if (Plan[n].State == "success") {
+                        Plan[n].State = "info"
+                        Plan[n].shadow = "hover"
+                    } else {
+                        Plan[n].State = "success"
+                        Plan[n].shadow = "always"
+                    }
+                },
+                getState: function () {
+                    const Plan = this.Plan
+                    const frush = this.frush
+                    const nowTime = new Date().getTime()
+                    for (var i = 0; i < Plan.length; i++) {
+                        Plan[i].State = "success"
+                        if (nowTime < new Date(Plan[i].Time).getTime()) {
+                            this.timer = setInterval(function () {
+                                return frush(i - 1)
+                            }, 300);
+                            for (var ii = i - 1; ii < Plan.length; ii++) {
+                                Plan[ii].State = "info"
+                            }
+                            break
+                        }
+                    }
+                    this.isHoliyDay()
+                },
+                isHoliyDay: function () {
+                    const nowTime = new Date().getTime()
+                    if (nowTime > new Date("2021/2/8").getTime()) {
+                        if (nowTime < new Date("2021/2/22").getTime()) {
+                            this.isNewYear = true
+                        }
+                    }
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>
